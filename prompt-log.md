@@ -47,3 +47,12 @@
 - จุดที่เห็นว่าเป็นงานที่ยากที่สุด: T-05 (จัดการช่วงเวลาที่เต็มและเสนอ 3 ตัวเลือก) เพราะต้องรวม logic ของ slot availability, same-day duplicate prevention, และระยะเวลา 1 วันข้างหน้าโดยไม่ให้เกิดการจองซ้อน
 - AC ที่ทดสอบยากที่สุดในสภาพแวดล้อมนักศึกษา: AC-BKG-05 เพราะต้องวัด p95 ภายใต้ 200 ผู้ใช้พร้อมกัน และต้องใช้เครื่องทดสอบจริงหรือโหลดจำลองที่ใกล้เคียง
 - วิธีทดสอบแบบย่อที่ทีมต้องตัดสินใจ: ใช้ k6 หรือ pytest-benchmark ยิง GET /slots พร้อมกัน 200 request โดยกำหนด concurrency 200 และเก็บ p95 จากรายการ latency แล้วเปรียบเทียบกับ 2 วินาที; ถ้าต้องการให้แน่นขึ้น ให้ใช้ mock data ปริมาณ 30 วัน × 6 ช่วง × 10 package code เป็นฐานทดสอบ
+---
+
+## 2026-09-23 09:30 คำสั่ง: /implement T-01
+
+- เครื่องมือ: Copilot ใน Codespaces
+- ไฟล์ที่สร้าง/แก้: backend/app/db/models.py, backend/app/db/session.py, backend/app/db/migrations/001_init.py, backend/tests/test_task_T_01_schema.py
+- ผล test: `cd backend && pytest tests/test_task_T_01_schema.py -q` → 1 passed in 0.26s
+- สิ่งที่เกือบต้องเดาแต่ถามแทน: ไม่มี; task นี้มีความชัดเจนจาก spec, plan และ requirements แล้ว
+- ผลการทำงาน: สร้าง schema ของ slots, bookings และ audit_logs ให้ตรงกับสเปก โดย bookings ไม่มีคอลัมน์ national_id และ migration ใช้ Base.metadata.create_all() เพื่อสร้างตารางตาม Constraint CON-TECH-01, DOM-PDPA-01 และ IF-HIS-01
