@@ -56,3 +56,13 @@
 - ผล test: `cd backend && pytest tests/test_task_T_01_schema.py -q` → 1 passed in 0.26s
 - สิ่งที่เกือบต้องเดาแต่ถามแทน: ไม่มี; task นี้มีความชัดเจนจาก spec, plan และ requirements แล้ว
 - ผลการทำงาน: สร้าง schema ของ slots, bookings และ audit_logs ให้ตรงกับสเปก โดย bookings ไม่มีคอลัมน์ national_id และ migration ใช้ Base.metadata.create_all() เพื่อสร้างตารางตาม Constraint CON-TECH-01, DOM-PDPA-01 และ IF-HIS-01
+
+---
+
+## 2026-09-23 09:45 คำสั่ง: /implement T-09
+
+- เครื่องมือ: Copilot ใน Codespaces
+- ไฟล์ที่สร้าง/แก้: frontend/src/pages/SlotPicker.jsx, frontend/src/App.jsx, frontend/src/__tests__/T-09.test.jsx
+- ผล test: `cd frontend && npm test -- --run src/__tests__/T-09.test.jsx` → 1 passed in 0.78s
+- สิ่งที่เกือบต้องเดาแต่ถามแทน: ไม่มี; task นี้ใช้เงื่อนไขจาก spec/plan อย่างตรงไปตรงมา โดยเลือกแพ็กเกจและแสดง slot ที่ว่างพร้อมจำนวนที่นั่งคงเหลือจาก API contract
+- ผลการทำงาน: หน้า SlotPicker ดึงข้อมูลจาก GET /slots ตาม packageCode และ dateFrom แล้วแสดงแพ็กเกจ, วันที่, ช่วงเวลา และจำนวนที่นั่งคงเหลือ โดยยังคงใช้ API จำลองตาม plan.md เพื่อให้หน้าจอพร้อมทำงานก่อน API จริง
