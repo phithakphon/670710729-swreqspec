@@ -74,3 +74,21 @@
 - pytest backend ที่รันซ้ำ: 6 passed, 1 failed; TC-BKG-01-2 ยังคงได้ HTTP 201 แทน HTTP 409
 - vitest frontend ที่รันซ้ำ: 1 passed (เฉพาะ test โครงหน้าจอ); ยังไม่มี BookingResult หรือหน้าจอ booking สำหรับ test ของ TC-BKG-01-1 และ T-06 รอ Q-02
 - ไม่มีการแก้ test หรือโค้ดระบบในการรันซ้ำ
+
+---
+
+## 2569-10-07 08:31 คำสั่ง: /verify specs/001-booking/
+
+- ผล test รอบตรวจ: backend 7 passed, 0 failed; frontend 1 passed, 0 failed
+- ตารางตามรอยไปข้างหน้า: 15 แถว — ครบ 0, ยังไม่ถึง 8, รอ Q-xx 0, ช่องโหว่ 7
+- ข้อค้นพบใหม่ใน specs/001-booking/rtm.md: F-01 ถึง F-09 (รวม 9 ข้อ)
+- ตรวจโค้ดและ test แบบอ่านอย่างเดียว; แก้เฉพาะสร้าง rtm.md และเพิ่มบันทึกนี้
+
+---
+
+## 2569-10-07 08:37 คำสั่ง: ลบของแถมที่อยู่ใน Out of scope (UC-02)
+
+- ทีมตัดสินให้แก้โค้ดโดยลบ endpoint ยกเลิกการจองและฟังก์ชัน `cancel_booking` ตาม Out of scope ใน spec
+- ลบ `DELETE /bookings/{booking_id}` จาก `backend/app/booking/router.py` และลบ `cancel_booking` จาก `backend/app/booking/service.py`
+- อัปเดต `specs/001-booking/rtm.md`: ย้าย F-03 ไปหัวข้อ "แก้แล้ว" พร้อมหลักฐานตรวจไม่พบ endpoint/ฟังก์ชันหลังลบ
+- รัน pytest backend หลังแก้: 7 passed, 0 failed (มี StarletteDeprecationWarning จาก TestClient/httpx)
