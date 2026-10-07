@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 export default function ConfirmBooking({ api, slot, onDone, onBack }) {
-  const [full, setFull] = useState(null)   // ผลเมื่อช่วงเวลาเต็ม (409)
+  const [full, setFull] = useState(null)    //ผลเมื่อช่วงเวลาเต็ม (409)
   const [booking, setBooking] = useState(null)
   const [cancelled, setCancelled] = useState(false)
 
