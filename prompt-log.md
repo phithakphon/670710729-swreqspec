@@ -68,3 +68,9 @@
   - ไม่ผ่าน: TC-BKG-01-2 ได้ HTTP 201 แทน HTTP 409; พบสาเหตุที่น่าจะเกี่ยวข้องใน backend/app/booking/service.py บรรทัด 26 ซึ่งปฏิเสธเฉพาะ remaining < 0
 - vitest ทั้ง frontend: 1 passed (test โครงหน้าจอเดิม); ยังไม่มี test หน้าจอเฉพาะ TC-BKG-01-1 เพราะการแสดงหมายเลขคิวรอ Q-02 และ task T-06 ยังรอคำตอบ
 - ไม่มีการแก้ test ให้ผ่านหรือแก้โค้ดระบบ; TC-BKG-01-2 คงผลไม่ผ่านเพื่อให้ทีมพิจารณา
+
+### 2569-10-07 08:24 คำสั่งซ้ำ: /testcases AC-BKG-01 specs/001-booking/
+- สถานะ: แถว TC-BKG-01-1 ถึง TC-BKG-01-3 เป็น "ใช้ได้" และมี pytest ตามชื่อครบแล้ว จึงไม่มีการเพิ่ม test ซ้ำ
+- pytest backend ที่รันซ้ำ: 6 passed, 1 failed; TC-BKG-01-2 ยังคงได้ HTTP 201 แทน HTTP 409
+- vitest frontend ที่รันซ้ำ: 1 passed (เฉพาะ test โครงหน้าจอ); ยังไม่มี BookingResult หรือหน้าจอ booking สำหรับ test ของ TC-BKG-01-1 และ T-06 รอ Q-02
+- ไม่มีการแก้ test หรือโค้ดระบบในการรันซ้ำ
